@@ -36,6 +36,7 @@ describe("Adds to x number of date unit types to date", () => {
     const results = add(moment("2022/01/01", "YYYY/MM/DD").toDate(), 4, DATE_UNIT_TYPES.MONTHS);
     expect(moment(results).format("YYYY/MM/DD")).toBe("2022/05/01");
   });
+
 });
 describe("Checkes if date is within 2 dates", () => {
   it("Should return true if date is between 2 dates", () => {
