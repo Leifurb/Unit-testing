@@ -13,10 +13,10 @@ export function isWithinRange(date: Date, from: Date, to: Date) {
   return moment(date).isBetween(from, to);
 }
 
-export function isDateBefore(date: Date, compareDate) {
+export function isDateBefore(date: Date, compareDate:Date) {
   return moment(date).isBefore(compareDate);
 }
 
-export function isSameDay(date, compareDate) {
+export function isSameDay(date: Date, compareDate: Date) {
   return moment(date).isSame(compareDate);
 }
