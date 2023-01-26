@@ -1,7 +1,8 @@
 import {describe, expect, it} from 'vitest';
-import { getCurrentYear, add, isWithinRange } from '../dateUtils';
+import { getCurrentYear, add, isWithinRange, isDateBefore } from '../dateUtils';
 import moment from 'moment';
 import { DATE_UNIT_TYPES } from '../constants';
+import { isBefore } from 'date-fns';
 
 describe("Gets the current year", () => {
   it("Should fetch the current year", () => {
@@ -39,6 +40,17 @@ describe("Adds to x number of date unit types to date", () => {
 describe("Checkes if date is within 2 dates", () => {
   it("Should return true if date is between 2 dates", () => {
     const results = isWithinRange(moment("2015/01/01", "YYYY/MM/DD").toDate(), moment("2010/01/01", "YYYY/MM/DD").toDate(), moment("2020/01/01", "YYYY/MM/DD").toDate());
+    expect(results).toBe(true);
+  });
+});
+
+describe("Checkes if date is before another date", () => {
+  it("Should return true if date is before given date", () => {
+    const results = isDateBefore(moment("2015/01/01", "YYYY/MM/DD").toDate(), moment("2010/01/01", "YYYY/MM/DD").toDate());
+    expect(results).toBe(false);
+  });
+  it("Should return true if date is before given date", () => {
+    const results = isDateBefore(moment("2010/01/01", "YYYY/MM/DD").toDate(), moment("2015/01/01", "YYYY/MM/DD").toDate());
     expect(results).toBe(true);
   });
 });
