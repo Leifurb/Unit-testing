@@ -62,6 +62,10 @@ describe("Checkes if first date is same as second date", () => {
     expect(results).toBe(false);
   });
   it("Should return true if first date is same second date", () => {
+    const results = isSameDay(moment("2010/10/01", "YYYY/MM/DD").toDate(), moment("2010/10/01", "YYYY/MM/DD").toDate());
+    expect(results).toBe(true);
+  });
+  it("Should return true if first date is same second date", () => {
     const results = isSameDay(moment("2010/01/01", "YYYY/MM/DD").toDate(), moment("2010/01/01", "YYYY/MM/DD").toDate());
     expect(results).toBe(true);
   });
