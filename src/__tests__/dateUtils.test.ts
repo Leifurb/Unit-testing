@@ -2,12 +2,11 @@ import {describe, expect, it} from 'vitest';
 import { getCurrentYear, add, isWithinRange, isDateBefore, isSameDay} from '../dateUtils';
 import moment from 'moment';
 import { DATE_UNIT_TYPES } from '../constants';
-import { isBefore } from 'date-fns';
 
 describe("Gets the current year", () => {
   it("Should fetch the current year", () => {
     const results = getCurrentYear();
-    expect(results).toBe(2023);
+    expect(results).toBe(moment().get('year'));
   });
 });
 
