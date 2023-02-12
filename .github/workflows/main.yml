@@ -20,5 +20,11 @@ jobs:
     - name: Run tests
       run: npm run test
     
+    - name: Monitor coverage
+      uses: slavcodev/coverage-monitor-action@v1
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          coverage_path: "logs/coverage.xml"
+    
     
      
