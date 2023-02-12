@@ -19,7 +19,13 @@ jobs:
       run: npm ci
     - name: Run tests
       run: npm run test
-    
+      
+    permissions:
+      # Required to checkout the code
+      contents: read
+      # Required to put a comment into the pull-request
+      pull-requests: write
+
     - name: coverage test
       run: npx vitest --coverage
     - name: 'Report Coverage'
