@@ -5,8 +5,7 @@ on:
   pull_request:
     branches: main
 jobs:
-  test:
-    name: Tests
+  install-dependencies:
     runs-on: ubuntu-latest
     steps: 
     - name: Checkout Repo
@@ -17,6 +16,25 @@ jobs:
         node-version: 18
     - name: NPM Install
       run: npm ci
+
+  typecheck:
+    runs-on: ubuntu-latest
+    needs: install-deps
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+      with:
+        ref: ${{ steps.install-deps.outputs.ref }}
+
+    - name: Run typecheck
+      run: npx tsc --noEmit
+
+  test:
+    name: Tests
+    runs-on: ubuntu-latest
+    needs: install-deps
+
     - name: Run tests
       run: npm run test
     
