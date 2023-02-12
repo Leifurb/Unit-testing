@@ -9,6 +9,7 @@ export default defineConfig({
       branches: 90,
       functions: 90,
       statements: 90
+      
     }
   }
 });
