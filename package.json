@@ -9,7 +9,6 @@
   "scripts": {
     "test": "vitest"
   },
-  
   "keywords": [],
   "author": "",
   "license": "ISC",
