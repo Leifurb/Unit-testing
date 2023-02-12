@@ -13,6 +13,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@vitest/coverage-c8": "^0.28.4",
     "date-fns": "^2.29.3",
     "moment": "^2.29.4",
     "vitest": "^0.27.3"
