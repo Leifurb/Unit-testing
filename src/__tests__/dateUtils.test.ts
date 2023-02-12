@@ -14,6 +14,7 @@ describe("Adds to x number of date unit types to date", () => {
   it("Should add x number of days to date", () => {
     const results = add(moment("2022/12/01", "YYYY/MM/DD").toDate(), 10);
     expect(moment(results).format("YYYY/MM/DD")).toBe("2022/12/11");
+    
   });
   it("Should add x number of years to date", () => {
     const results = add(moment("2022/12/01", "YYYY/MM/DD").toDate(), 10, DATE_UNIT_TYPES.YEARS);
