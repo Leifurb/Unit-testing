@@ -1,3 +1,14 @@
+# ATH: Coverage testinn byrtast undir github Actions summary og einnig þegar að pull_requesta er búinn til sjást þau sem comment
+
+
+# 3 jobs keyrast þegar það er pushað á main, typecheck, runnar testinn og síðan puplishar á github, 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
  # Assignment 2 - unit testing
 
 
