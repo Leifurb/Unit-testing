@@ -2,8 +2,6 @@ name: typecheck, run tests then publish
 on:
   push:
     branches: main
-  pull_request:
-    branches: main
 jobs:
   typecheck:
     runs-on: ubuntu-latest
