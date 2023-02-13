@@ -24,7 +24,9 @@ jobs:
   test:
     name: Tests
     runs-on: ubuntu-latest
-    pull-request: write
+    
+    permissions:
+      pull-requests: write
     steps: 
     - name: Checkout Repo
       uses: actions/checkout@v3.3.0
