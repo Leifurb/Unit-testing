@@ -1,7 +1,11 @@
 # ATH: Coverage testinn byrtast undir github Actions summary og einnig þegar að pull_requesta er búinn til sjást þau sem comment
 
-
+# publish jobbið publishar bara þegar það er version change í package.json 
 # 3 jobs keyrast þegar það er pushað á main, typecheck, runnar testinn og síðan puplishar á github, 
+ 
+ 
+ 
+ 
  
  
  
