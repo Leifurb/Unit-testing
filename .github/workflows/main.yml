@@ -43,7 +43,7 @@ jobs:
   publishnpm:
     needs: [typecheck, test]
 
-    name: Publish Package
+    name: Publish package
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -59,6 +59,6 @@ jobs:
       - run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          
+
 
 
