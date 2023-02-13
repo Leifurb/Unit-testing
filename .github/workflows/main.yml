@@ -43,7 +43,7 @@ jobs:
   publishnpm:
     needs: [typecheck, test]
 
-    name: Publish Package to npmjs
+    name: Publish Package
     runs-on: ubuntu-latest
     permissions:
       contents: read
