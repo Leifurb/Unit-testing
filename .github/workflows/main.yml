@@ -24,7 +24,7 @@ jobs:
   test:
     name: Tests
     runs-on: ubuntu-latest
-
+    
     permissions:
       pull-requests: write
     steps: 
