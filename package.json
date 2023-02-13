@@ -1,12 +1,12 @@
 {
-  "name": "Leifurb/Unit-testing",
+  "name": "@Leifurb/Unit-testing",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "engines": {
     "node": "18"
   },
-  
+
   "scripts": {
     "test": "vitest"
   },
