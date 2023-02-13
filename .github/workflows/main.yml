@@ -43,7 +43,7 @@ jobs:
   publishnpm:
     needs: [typecheck, test]
 
-    name: Publish package
+    name: Publish Package
     runs-on: ubuntu-latest
     permissions:
       contents: read
