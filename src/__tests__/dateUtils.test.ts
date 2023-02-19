@@ -1,72 +1,114 @@
-import {describe, expect, it} from 'vitest';
-import { getCurrentYear, add, isWithinRange, isDateBefore, isSameDay} from '../dateUtils';
-import moment from 'moment';
-import { DATE_UNIT_TYPES } from '../constants';
+import { describe, beforeAll, it, expect, vi } from "vitest";
+import { DATE_UNIT_TYPES } from "../constants";
+import {
+  add,
+  getCurrentYear,
+  isDateBefore,
+  isSameDay,
+  isWithinRange,
+} from "../dateUtils";
 
-describe("Gets the current year", () => {
-  it("Should fetch the current year", () => {
-    const results = getCurrentYear();
-    expect(results).toBe(moment().get('year'));
+describe("Date Utils", () => {
+  beforeAll(() => {
+    vi.useFakeTimers().setSystemTime(new Date("2020-01-01").getTime());
+  });
+
+  describe("getCurrentYear", () => {
+    it("should get current year", () => {
+      const results = getCurrentYear();
+      expect(results).toBe(2020);
+    });
+  });
+
+  describe("add", () => {
+    it("should add 1 day", () => {
+      const results = add(new Date(), 1, DATE_UNIT_TYPES.DAYS);
+      expect(results).toStrictEqual(new Date("2020-01-02T00:00:00.000Z"));
+    });
+
+    it("should add 0 day", () => {
+      const results = add(new Date(), 0, DATE_UNIT_TYPES.DAYS);
+      expect(results).toStrictEqual(new Date("2020-01-01T00:00:00.000Z"));
+    });
+
+    it("should add 7 day", () => {
+      const results = add(new Date(), 7, DATE_UNIT_TYPES.DAYS);
+      expect(results).toStrictEqual(new Date("2020-01-08T00:00:00.000Z"));
+    });
+
+    it("should add -1 day", () => {
+      const results = add(new Date(), -1, DATE_UNIT_TYPES.DAYS);
+      expect(results).toStrictEqual(new Date("2019-12-31T00:00:00.000Z"));
+    });
+
+    it("should add 7 seconds", () => {
+      const results = add(new Date(), 7, DATE_UNIT_TYPES.SECONDS);
+      expect(results).toStrictEqual(new Date("2020-01-01T00:00:07.000Z"));
+    });
+
+    it("should add 7 weeks", () => {
+      const results = add(new Date(), 7, DATE_UNIT_TYPES.WEEKS);
+      expect(results).toStrictEqual(new Date("2020-02-19T00:00:00.000Z"));
+    });
+
+    it("should add 7 months", () => {
+      const results = add(new Date(), 7, DATE_UNIT_TYPES.MONTHS);
+      expect(results).toStrictEqual(new Date("2020-08-01T00:00:00.000Z"));
+    });
+
+    it("should add 7 years", () => {
+      const results = add(new Date(), 7, DATE_UNIT_TYPES.YEARS);
+      expect(results).toStrictEqual(new Date("2027-01-01T00:00:00.000Z"));
+    });
+  });
+
+  describe("isWithinRange", () => {
+    it("should be within range", () => {
+      const results = isWithinRange(
+        new Date("2020-01-01"),
+        new Date("2019-01-01"),
+        new Date("2021-01-01")
+      );
+      expect(results).toBeTruthy();
+    });
+
+    it("should be outside range", () => {
+      const results = isWithinRange(
+        new Date("2018-01-01"),
+        new Date("2019-01-01"),
+        new Date("2021-01-01")
+      );
+      expect(results).toBeFalsy();
+    });
+  });
+
+  describe("isDateBefore", () => {
+    it("should before", () => {
+      const results = isDateBefore(
+        new Date("2019-01-01"),
+        new Date("2020-01-01")
+      );
+      expect(results).toBeTruthy();
+    });
+
+    it("should not be before", () => {
+      const results = isDateBefore(
+        new Date("2020-01-01"),
+        new Date("2019-01-01")
+      );
+      expect(results).toBeFalsy();
+    });
+  });
+
+  describe("isSameDay", () => {
+    it("should be same day", () => {
+      const results = isSameDay(new Date("2020-01-01"), new Date("2020-01-01"));
+      expect(results).toBeTruthy();
+    });
+
+    it("should not be same day", () => {
+      const results = isSameDay(new Date("2020-01-01"), new Date("2019-01-01"));
+      expect(results).toBeFalsy();
+    });
   });
 });
-
-describe("Adds to x number of date unit types to date", () => {
-  it("Should add x number of days to date", () => {
-    const results = add(moment("2022/12/01", "YYYY/MM/DD").toDate(), 10);
-    expect(moment(results).format("YYYY/MM/DD")).toBe("2022/12/11");
-  });
-  it("Should add x number of years to date", () => {
-    const results = add(moment("2022/12/01", "YYYY/MM/DD").toDate(), 10, DATE_UNIT_TYPES.YEARS);
-    expect(moment(results).format("YYYY/MM/DD")).toBe("2032/12/01");
-  });
-  it("Should add x number of minutes to date", () => {
-    const results = add(moment("2022/12/01", "YYYY/MM/DD").toDate(), 10, DATE_UNIT_TYPES.MINUTES);
-    expect((results).getMinutes()).toBe(10);
-  });
-  it("Should add x number of seconds to date", () => {
-    const results = add(moment("2022/12/01", "YYYY/MM/DD").toDate(), 20, DATE_UNIT_TYPES.SECONDS);
-    expect((results).getSeconds()).toBe(20);
-  });
-  it("Should add x number of weeks to date", () => {
-    const results = add(moment("2022/01/01", "YYYY/MM/DD").toDate(), 4, DATE_UNIT_TYPES.WEEKS);
-    expect(moment(results).format("YYYY/MM/DD")).toBe("2022/01/29");
-  });
-  it("Should add x number of months to date", () => {
-    const results = add(moment("2022/01/01", "YYYY/MM/DD").toDate(), 4, DATE_UNIT_TYPES.MONTHS);
-    expect(moment(results).format("YYYY/MM/DD")).toBe("2022/05/01");
-  });
-
-});
-describe("Checkes if date is within 2 dates", () => {
-  it("Should return true if date is between 2 dates", () => {
-    const results = isWithinRange(moment("2015/01/01", "YYYY/MM/DD").toDate(), moment("2010/01/01", "YYYY/MM/DD").toDate(), moment("2020/01/01", "YYYY/MM/DD").toDate());
-    expect(results).toBe(true);
-  });
-});
-
-describe("Checkes if date is before another date", () => {
-  it("Should return true if date is before given date", () => {
-    const results = isDateBefore(moment("2015/01/01", "YYYY/MM/DD").toDate(), moment("2010/01/01", "YYYY/MM/DD").toDate());
-    expect(results).toBe(false);
-  });
-  it("Should return true if date is before given date", () => {
-    const results = isDateBefore(moment("2010/01/01", "YYYY/MM/DD").toDate(), moment("2015/01/01", "YYYY/MM/DD").toDate());
-    expect(results).toBe(true);
-  });
-});
-
-describe("Checkes if first date is same as second date", () => {
-  it("Should return true if first date is same second date", () => {
-    const results = isSameDay(moment("2015/01/01", "YYYY/MM/DD").toDate(), moment("2010/01/01", "YYYY/MM/DD").toDate());
-    expect(results).toBe(false);
-  });
-  it("Should return true if first date is same second date", () => {
-    const results = isSameDay(moment("2010/10/01", "YYYY/MM/DD").toDate(), moment("2010/10/01", "YYYY/MM/DD").toDate());
-    expect(results).toBe(true);
-  });
-  it("Should return true if first date is same second date", () => {
-    const results = isSameDay(moment("2010/01/01", "YYYY/MM/DD").toDate(), moment("2010/01/01", "YYYY/MM/DD").toDate());
-    expect(results).toBe(true);
-  });
-});
-
