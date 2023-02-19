@@ -63,9 +63,22 @@ jobs:
           node-version: 18
           registry-url: 'https://npm.pkg.github.com'
       - run: npm ci
-      - run: npm publish --registry
+      
+      - name: Check if version has been updated
+        id: check
+        uses: EndBug/version-check@v2
+
+      - name: Log when changed
+        if: steps.check.outputs.changed == 'true'
+        run: npm publish --registry
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Log when unchanged
+        if: steps.check.outputs.changed == 'false'
+        run: 'echo "No version change : wont publish/"'
+        
+      
 
 
 
