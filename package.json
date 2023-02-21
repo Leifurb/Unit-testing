@@ -14,7 +14,8 @@
     "node": "18"
   },
   "scripts": {
-    "test": "vitest"
+    "test": "vitest",
+    "lint": "eslint src"
   },
   "keywords": [],
   "author": "",
@@ -29,6 +30,7 @@
     "@typescript-eslint/eslint-plugin": "^5.52.0",
     "@typescript-eslint/parser": "^5.52.0",
     "eslint": "^8.34.0",
+    "eslint-plugin-vihu": "file:./rules",
     "typescript": "^4.9.4"
   },
   "bugs": {

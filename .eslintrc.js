@@ -15,8 +15,13 @@ module.exports = {
         "sourceType": "module"
     },
     "plugins": [
-        "@typescript-eslint"
+        "@typescript-eslint",
+        "vihu"
+
     ],
     "rules": {
+        "vihu/camelCase": "error",
+        "vihu/noMoment": "error",
+        "vihu/noConsoleLog": "error"
     }
 }
