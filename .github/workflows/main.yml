@@ -48,7 +48,7 @@ jobs:
 
   
   publishnpm:
-    needs: [typecheck, test]
+    needs: [typecheck, test, lintcheck]
 
     name: Publish Package
     runs-on: ubuntu-latest
