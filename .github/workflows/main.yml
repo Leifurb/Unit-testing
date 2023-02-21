@@ -79,7 +79,7 @@ jobs:
         run: npm run prettierCheck
 
   publishnpm:
-    needs: [typecheck, test, lintcheck]
+    needs: [typecheck, test, lintcheck, prettiercheck]
 
     name: Publish Package
     runs-on: ubuntu-latest
