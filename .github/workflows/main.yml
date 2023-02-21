@@ -45,7 +45,7 @@ jobs:
       - name: "Report Coverage"
         if: always() # Also generate the report if tests are failing
         uses: davelosert/vitest-coverage-report-action@v1
-    
+
   lintcheck:
     runs-on: ubuntu-latest
 
@@ -61,7 +61,7 @@ jobs:
 
       - name: Run lint check
         run: npm run lint
-  
+
   prettiercheck:
     runs-on: ubuntu-latest
 
