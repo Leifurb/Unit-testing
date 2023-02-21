@@ -1,15 +1,14 @@
 module.exports = {
-    create: function(context) {
-        return {
-          ImportDeclaration(node) {
-            const moduleName = node.source.value;
-            if (moduleName === "moment") {
-              context.report({
-                node: node,
-                message: "Importing 'moment' library is not allowed."
-              });
-            }
-        }
-    }
+  create: function(context) {
+      return {
+        CallExpression(node) {
+          if (node.callee.name === "moment" || (node.callee.name === "require" && node.arguments[0].value === "moment")) {
+            context.report({
+              node: node,
+              message: "Importing 'moment' library is not allowed."
+            });
+          }
+      }
   }
+}
 };

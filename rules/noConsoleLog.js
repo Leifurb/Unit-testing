@@ -1,7 +1,7 @@
 module.exports = {
   create(context) {
     return {
-      MemberExpression(node) {
+      CallExpression(node) {
         if (node.callee.type === "MemberExpression" && node.callee.object.name === "console" && node.callee.property.name === "log") {
           context.report({
             node: node,
