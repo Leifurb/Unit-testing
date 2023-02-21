@@ -19,7 +19,7 @@ test("no console.log", () => {
           {
             message: "Use of 'console.log()' is not allowed",
           },
-        ]
+        ],
       },
     ],
   });

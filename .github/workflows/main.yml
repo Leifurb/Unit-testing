@@ -5,48 +5,79 @@ on:
 jobs:
   typecheck:
     runs-on: ubuntu-latest
-    
-    steps: 
-    - name: Checkout Repo
-      uses: actions/checkout@v3.3.0
-    - name: Setup Node.js environment
-      uses: actions/setup-node@v3.6.0
-      with: 
-        node-version: 18
-    - name: NPM Install
-      run: npm ci
 
-    - name: Run typecheck
-      run: npx tsc --noEmit
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v3.3.0
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v3.6.0
+        with:
+          node-version: 18
+      - name: NPM Install
+        run: npm ci
+
+      - name: Run typecheck
+        run: npx tsc --noEmit
 
   test:
     name: Tests
     runs-on: ubuntu-latest
     permissions:
-        # Required to checkout the code
-        contents: read
-        # Required to put a comment into the pull-request
-        pull-requests: write
-        
-    steps: 
-    - name: Checkout Repo
-      uses: actions/checkout@v3.3.0
-    - name: Setup Node.js environment
-      uses: actions/setup-node@v3.6.0
-      with: 
-        node-version: 18
-    - name: NPM Install
-      run: npm ci
-    - name: Run tests
-      run: npm run test
+      # Required to checkout the code
+      contents: read
+      # Required to put a comment into the pull-request
+      pull-requests: write
 
-    - name: coverage test
-      run: npx vitest --coverage
-    - name: 'Report Coverage'
-      if: always() # Also generate the report if tests are failing
-      uses:  davelosert/vitest-coverage-report-action@v1
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v3.3.0
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v3.6.0
+        with:
+          node-version: 18
+      - name: NPM Install
+        run: npm ci
+      - name: Run tests
+        run: npm run test
 
+      - name: coverage test
+        run: npx vitest --coverage
+      - name: "Report Coverage"
+        if: always() # Also generate the report if tests are failing
+        uses: davelosert/vitest-coverage-report-action@v1
+    
+  lintcheck:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v3.3.0
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v3.6.0
+        with:
+          node-version: 18
+      - name: NPM Install
+        run: npm ci
+
+      - name: Run lint check
+        run: npm run lint
   
+  prettiercheck:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v3.3.0
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v3.6.0
+        with:
+          node-version: 18
+      - name: NPM Install
+        run: npm ci
+
+      - name: Run lint check
+        run: npm run prettierCheck
+
   publishnpm:
     needs: [typecheck, test, lintcheck]
 
@@ -61,9 +92,9 @@ jobs:
       - uses: actions/setup-node@v3.6.0
         with:
           node-version: 18
-          registry-url: 'https://npm.pkg.github.com'
+          registry-url: "https://npm.pkg.github.com"
       - run: npm ci
-      
+
       - name: Check if version has been updated
         id: check
         uses: EndBug/version-check@v2
@@ -77,24 +108,3 @@ jobs:
       - name: Log when unchanged
         if: steps.check.outputs.changed == 'false'
         run: 'echo "No version change : wont publish/"'
-        
-  lintcheck:
-    runs-on: ubuntu-latest
-    
-    steps: 
-    - name: Checkout Repo
-      uses: actions/checkout@v3.3.0
-    - name: Setup Node.js environment
-      uses: actions/setup-node@v3.6.0
-      with: 
-        node-version: 18
-    - name: NPM Install
-      run: npm ci
-
-    - name: Run lint check
-      run: npm run lint
-
-
-
-
-

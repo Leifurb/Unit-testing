@@ -15,7 +15,9 @@
   },
   "scripts": {
     "test": "vitest",
-    "lint": "eslint src"
+    "lint": "eslint src",
+    "prettier": "npx prettier --write .",
+    "prettierCheck": "npx prettier --check ."
   },
   "keywords": [],
   "author": "",
@@ -31,6 +33,7 @@
     "@typescript-eslint/parser": "^5.52.0",
     "eslint": "^8.34.0",
     "eslint-plugin-vihu": "file:./rules",
+    "prettier": "2.8.4",
     "typescript": "^4.9.4"
   },
   "bugs": {

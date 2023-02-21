@@ -1,20 +1,10 @@
 # ATH: Coverage testinn byrtast undir github Actions summary og einnig þegar að pull_requesta er búinn til sjást þau sem comment
 
-# publish jobbið publishar bara þegar það er version change í package.json 
-# 3 jobs keyrast þegar það er pushað á main, typecheck, runnar testinn og síðan puplishar á github, 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- # Assignment 2 - unit testing
+# publish jobbið publishar bara þegar það er version change í package.json
 
+# 3 jobs keyrast þegar það er pushað á main, typecheck, runnar testinn og síðan puplishar á github,
+
+# Assignment 2 - unit testing
 
 This assignment is meant to improve your unit testing skills and teach you a few best practices when it comes to working with external libraries.
 
@@ -23,26 +13,26 @@ Since the library is abstracted the tests should still pass using the new librar
 
 Another task for you is to add type definition to the `dateUtils.ts` file. Please note that TypeScript is already set up, all you should need to do is to introduce types.
 
-
 **Group size:** 1 person
 
------
+---
 
 ## Prerequisite
 
 Make sure you have Node v18 installed before starting the assignment.
-* Select "Use this Template" and create a new repository using this as a template repo
+
+- Select "Use this Template" and create a new repository using this as a template repo
 
 ## Setup
 
-* `npm install`
+- `npm install`
 
 ## Commands
-* `npm run test`
-    - This runs the test suite
 
+- `npm run test`
+  - This runs the test suite
 
-------------------
+---
 
 ## The assignment
 
@@ -61,10 +51,9 @@ Your tests suite should not be touched at this point, the unit tests you wrote i
 
 ### **Commit your changes.**
 
+---
 
---------
 ## Handin
 
 Add me (arnif) as a contributor to the Github repo. There should be at least 3 commits that include each step described above.
 Add a link to the Github repo when turning in your solution to Canvas.
-

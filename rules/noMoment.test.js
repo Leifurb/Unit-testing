@@ -23,4 +23,4 @@ test("no use of moment library", () => {
       },
     ],
   });
-})
+});
